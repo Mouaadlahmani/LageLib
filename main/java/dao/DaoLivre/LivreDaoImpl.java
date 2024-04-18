@@ -1,17 +1,13 @@
 
-package dio.DioLivre;
+package dao.DaoLivre;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-import dio.DioLivre.IlivreDio;
-import dio.DioLivre.SinglotonConnection;
+
 import metier.metierLivre.Livre;
-
-
 
 public class LivreDaoImpl implements IlivreDio {
 
@@ -45,6 +41,8 @@ public class LivreDaoImpl implements IlivreDio {
 		// TODO Auto-generated method stub
 		return livre;
 	}
+
+
 
 	
 	
