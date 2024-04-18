@@ -5,7 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
+import java.util.List;
 
 import metier.metierLivre.Livre;
 
@@ -26,7 +27,7 @@ public class LivreDaoImpl implements IlivreDio {
 			  ps.setDate(4, livre.getAnnée_de_publication());
 			  ps.executeUpdate(); 
 			  
-			  PreparedStatement ps2=connection.prepareStatement("SELECT MAX(id) AS MAXID FROM produits");
+			  PreparedStatement ps2=connection.prepareStatement("SELECT MAX(livre_id) AS MAXID FROM livres");
 			  ResultSet rs=ps2.executeQuery(); 
 			  if(rs.next()) { 
 				  livre.setId(rs.getInt("MAXID"));
@@ -44,53 +45,39 @@ public class LivreDaoImpl implements IlivreDio {
 
 
 
+	  @Override public List<Livre> getTousLivres() {
+		  
+		  List<Livre> livres=new ArrayList<>(); 
+		  
+		  Connection connection= SinglotonConnection.getConnection();
+		  
+		  try {
+			  PreparedStatement ps=connection.prepareStatement("SELECT* FROM livres");
+		  
+		  ResultSet rs=ps.executeQuery();
+		  while(rs.next()){
+			  Livre liv=new Livre();
+			  
+			  liv.setId(rs.getInt("livre_id")); 
+			  liv.setTitre(rs.getString("titre"));
+			  liv.setAuteur(rs.getString("auteur"));
+			  liv.setEditeur(rs.getString("editeur"));
+			  liv.setAnnée_de_publication(rs.getDate("année_de_publication"));
+			  
+			  livres.add(liv);
+		  }
+		 
+		  
+		  } catch(SQLException e) { 
+		   
+		  }
+	
+		  return livres; 
+	
+	  }
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	  /*@Override public Produit save(Produit p) {
-	  
-	  Connection connection= SinglotonConnection.getConnection(); 
-	  try {
-	  PreparedStatement ps=connection.
-	  prepareStatement("INSERT INTO produits(nom_produit,prix,quantite_en_stock,descript)VALUES(?,?,?,?)"
-	  ); ps.setString(1, p.getNomProduit()); ps.setDouble(2, p.getPrix());
-	  ps.setInt(3, p.getQuantite()); ps.setString(4, p.getDescription());
-	  ps.executeUpdate(); PreparedStatement
-	  ps2=connection.prepareStatement("SELECT MAX(id) AS MAXID FROM produits");
-	  ResultSet rs=ps2.executeQuery(); if(rs.next()) { p.setId(rs.getInt("MAXID"));
-	  } ps.close(); } catch (SQLException e) { // TODO Auto-generated catch block
-	  e.printStackTrace(); }
-	  
-	  return p; }
-	  
+	  /*
 	  @Override public List<Produit> ProduitsParMC(String mc) { List<Produit>
 	  produits=new ArrayList<>(); Connection connection=
 	  SinglotonConnection.getConnection();
@@ -162,8 +149,11 @@ public class LivreDaoImpl implements IlivreDio {
 	  try { PreparedStatement
 	  ps=connection.prepareStatement("SELECT* FROM produits");
 	  
-	  ResultSet rs=ps.executeQuery(); while(rs.next()) { Produit p=new Produit();
-	  p.setId(rs.getInt("id")); p.setNomProduit(rs.getString("nom_produit"));
+	  ResultSet rs=ps.executeQuery(); 
+	  while(rs.next()) { 
+	  Produit p=new Produit();
+	  p.setId(rs.getInt("id"));
+	  p.setNomProduit(rs.getString("nom_produit"));
 	  p.setPrix(rs.getDouble("prix"));
 	  p.setQuantite(rs.getInt("quantite_en_stock"));
 	  p.setDescription(rs.getString("descript")); produits.add(p); } } catch
@@ -172,3 +162,4 @@ public class LivreDaoImpl implements IlivreDio {
 	 
 */
 }
+	  
