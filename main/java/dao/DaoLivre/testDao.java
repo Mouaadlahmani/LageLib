@@ -14,7 +14,7 @@ public class testDao {
 
 	public static void main(String[] args) {
 	 
-//	    Livre live1 =new Livre("Anti gon","Ahmed s","editeur1",);
+    Livre live1 =new Livre("Anti gon","Ahmed s","editeur1",);
 	
 	}
 
