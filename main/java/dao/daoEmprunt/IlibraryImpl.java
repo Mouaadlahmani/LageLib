@@ -22,7 +22,7 @@ public class IlibraryImpl implements Ilibrary{
 			ps.setInt(2, E.getMembreId());
 			ps.setDate(3, E.getDate_retour());
 			ps.setDate(4, E.getDate_demprunt());
-			ps.setString(5, E.getStatus());
+			ps.setString(5, E.getStatut());
 			ps.executeUpdate();
 			ps.close();
 		} catch (SQLException e) {
@@ -36,20 +36,18 @@ public class IlibraryImpl implements Ilibrary{
 	public List<Emprunt> chercher(String mc) {
 		List<Emprunt> Emprunts=new ArrayList<Emprunt>();
 		Connection connection = ConnectionJDBC.getConnection();
-		
-	
 		try {
-			PreparedStatement ps3=connection.prepareStatement
-					("SELECT * FROM EMPRUNTS WHERE livre_id LIKE ?");
-			ps3.setString(1, mc);
-			ResultSet rs=ps3.executeQuery();
+			PreparedStatement ps=connection.prepareStatement
+					("SELECT * FROM EMPRUNTS WHERE mem_id LIKE ?");
+			ps.setString(1, mc);
+			ResultSet rs=ps.executeQuery();
 			while(rs.next()) {
 				Emprunt E=new Emprunt();
 				E.setLivreId(rs.getInt("livre_id"));
 				E.setMembreId(rs.getInt("mem_id"));
 				E.setDate_retour(rs.getDate("date_retour"));
 				E.setDate_demprunt(rs.getDate("date_emprunt"));
-				E.setStatus(rs.getString("statut"));
+				E.setStatut(rs.getString("statut"));
 				Emprunts.add(E);
 			}
 		} catch (SQLException e) {

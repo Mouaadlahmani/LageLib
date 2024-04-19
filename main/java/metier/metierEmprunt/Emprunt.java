@@ -12,13 +12,13 @@ public class Emprunt {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Emprunt(int livreId, int membreId, Date date_retour, Date date_demprunt, String status) {
+	public Emprunt(int livreId, int membreId, Date date_retour, Date date_demprunt, String statut) {
 		super();
 		this.livreId = livreId;
 		this.membreId = membreId;
 		this.date_retour = date_retour;
 		this.date_demprunt = date_demprunt;
-		this.statut = status;
+		this.statut = statut;
 	}
 	public int getLivreId() {
 		return livreId;
@@ -44,16 +44,16 @@ public class Emprunt {
 	public void setDate_demprunt(Date date_demprunt) {
 		this.date_demprunt = date_demprunt;
 	}
-	public String getStatus() {
+	public String getStatut() {
 		return statut;
 	}
-	public void setStatus(String status) {
-		this.statut = status;
+	public void setStatut(String statut) {
+		this.statut = statut;
 	}
 	@Override
 	public String toString() {
 		return "Emprunt [livreId=" + livreId + ", membreId=" + membreId + ", date_retour=" + date_retour
-				+ ", date_demprunt=" + date_demprunt + ", status=" + statut + "]";
+				+ ", date_demprunt=" + date_demprunt + ", statut=" + statut + "]";
 	}
 	
 }
