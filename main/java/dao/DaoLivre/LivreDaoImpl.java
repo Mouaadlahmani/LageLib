@@ -31,6 +31,7 @@ public class LivreDaoImpl implements IlivreDio {
 			  ResultSet rs=ps2.executeQuery(); 
 			  if(rs.next()) { 
 				  livre.setId(rs.getInt("MAXID"));
+			
 			  } 
 			  ps.close(); 
 			  } catch (SQLException e) { 
@@ -75,6 +76,26 @@ public class LivreDaoImpl implements IlivreDio {
 		  return livres; 
 	
 	  }
+
+
+
+	@Override
+	public void deleteLivre(int id) {
+		 Connection connection=SinglotonConnection.getConnection();
+		
+		 try {
+			String Query="DELETE FROM livres WHERE livre_id=?";
+			PreparedStatement ps=connection.prepareStatement(Query);
+			ps.setInt(1, id);
+			ps.executeUpdate();
+			ps.close();
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+		}
+		 
+	
+	}
 	
 	
 	  /*
@@ -127,15 +148,21 @@ public class LivreDaoImpl implements IlivreDio {
 	  } catch (SQLException e) { // TODO Auto-generated catch block
 	  e.printStackTrace(); } return p; }
 	  
-	  @Override public void deleteProduit(int id) {
+	  @Override
+	   public void deleteProduit(int id) {
 	  
 	  
-	  
-	  Connection connection= SinglotonConnection.getConnection(); try {
+	 
+	  Connection connection= SinglotonConnection.getConnection(); 
+	  try {
 	  PreparedStatement
 	  ps=connection.prepareStatement("DELETE FROM produits WHERE ID=?");
-	  ps.setInt(1, id); ps.executeUpdate(); ps.close(); } catch (SQLException e) {
-	  // TODO Auto-generated catch block e.printStackTrace(); }
+	  ps.setInt(1, id); 
+	  ps.executeUpdate(); 
+	  ps.close(); 
+	  } catch (SQLException e) {
+	  // TODO Auto-generated catch block e.printStackTrace(); 
+	   * }
 	  
 	  
 	  
