@@ -2,6 +2,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="ISO-8859-1">
+<title>Ajouter-Emprunt</title>
+</head>
+<body>
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
 <meta charset="UTF-8">
 <title>Gestion library</title>
 <link rel="stylesheet" type="text/css" href="Css/bootstrap.min.css">
@@ -28,39 +36,35 @@
     </form>
   </div>
 </nav>
-<table class="table table-dark">
-    <tr>
-      <th>Livre Id</th>
-      <th>Membre Id</th>
-      <th>Date de retour</th>
-      <th>Date d'emprunt</th>
-      <th>Statut</th>
-      <th> </th>
-      <th> </th>
-    </tr>
-    <c:forEach items="${mo.emprunts}" var="E">
-     <tr>
-	    <td>${E.livreId}</td>
-	    <td>${E.membreId}</td>
-	    <td>${E.date_retour}</td>
-	    <td>${E.date_demprunt}</td>
-	    <td>${E.statut}</td>
-	    <td><a onclick="confirm ('Confirmer')" href="supprimer.java?id=${E.membreId}">Supprimer</a></td>
-	    <td><a href="modifier.java?id=${E.membreId}">Modifier</a></td>
-     </tr>
-    </c:forEach>
-     <c:forEach items="${model.emprunts}" var="E">
-     <tr>
-	    <td>${E.livreId}</td>
-	    <td>${E.membreId}</td>
-	    <td>${E.date_retour}</td>
-	    <td>${E.date_demprunt}</td>
-	    <td>${E.statut}</td>
-	    <td><a href="supprimer.java?id=${E.membreId + E.livreId}">Supprimer</a></td>
-	    <td><a href="modifier.java?id=${E.membreId + E.livreId}">Modifier</a></td>
-     </tr>
-    </c:forEach>
-</table>
+<form action="save.java" method="post">
+ <div class="from-group">
+	<label class="control-label">Livre Id</label>
+	<input type="text" name="livreId" class="form-control">
+	<span></span>
+	</div>
+	
+	 <div class="from-group">
+	<label class="control-label">Membre Id</label>
+	<input type="text" name="membreId" class="form-control">
+	<span></span>
+	</div>
+	
+	 <div class="from-group">
+	<label class="control-label">Date de retour</label>
+	<input type="date" name="dateRetour" class="form-control">
+	<span></span>
+	</div>
+	
+	<div class="from-group">
+	<label class="control-label">Date d'emprunt</label>
+	<input type="date" name="dateEmprunt" class="form-control">
+	<span></span>
+	</div>
+	
+	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Save</button>
+</form>
 </div>
+</body>
+</html>
 </body>
 </html>

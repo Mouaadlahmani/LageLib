@@ -57,10 +57,27 @@ public class IlibraryImpl implements Ilibrary{
 	}
 
 	@Override
-	public Emprunt getProduct(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public List<Emprunt> Afficher() {
+		List<Emprunt> Emprunts=new ArrayList<Emprunt>();
+		Connection connection = ConnectionJDBC.getConnection();
+		try {
+			PreparedStatement ps=connection.prepareStatement
+					("SELECT * FROM EMPRUNTS");
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				Emprunt E=new Emprunt();
+				E.setLivreId(rs.getInt("livre_id"));
+				E.setMembreId(rs.getInt("mem_id"));
+				E.setDate_retour(rs.getDate("date_retour"));
+				E.setDate_demprunt(rs.getDate("date_emprunt"));
+				E.setStatut(rs.getString("statut"));
+				Emprunts.add(E);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return Emprunts;
+}
 
 	@Override
 	public Emprunt modifie(Emprunt E) {
@@ -69,9 +86,18 @@ public class IlibraryImpl implements Ilibrary{
 	}
 
 	@Override
-	public void suprimer(int id) {
-		// TODO Auto-generated method stub
-		
+	public void suprimer(int mem_id) {
+		Connection connection=ConnectionJDBC.getConnection();
+		try {
+			PreparedStatement ps=connection.prepareStatement
+					("DELETE FROM EMPRUNTS WHERE mem_id=? and livre_id=?");
+			ps.setInt(1, mem_id);
+			ps.executeUpdate();
+			ps.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

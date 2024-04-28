@@ -12,13 +12,12 @@ public class Emprunt {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Emprunt(int livreId, int membreId, Date date_retour, Date date_demprunt, String statut) {
+	public Emprunt(int livreId, int membreId, Date date_retour, Date date_demprunt) {
 		super();
 		this.livreId = livreId;
 		this.membreId = membreId;
 		this.date_retour = date_retour;
 		this.date_demprunt = date_demprunt;
-		this.statut = statut;
 	}
 	public int getLivreId() {
 		return livreId;

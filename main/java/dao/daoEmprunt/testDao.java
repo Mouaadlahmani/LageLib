@@ -13,9 +13,7 @@ public class testDao {
 		Emprunt Em = l.ajouter(new Emprunt(1,1,d,d1,"en cours"));
 		System.out.println(Em.toString());*/
 		IlibraryImpl l = new IlibraryImpl();
-		List<Emprunt> Empr=l.chercher("%1%");
-		for(Emprunt E :Empr){
-			System.out.println(E.toString());
-		}
+		l.Afficher();
+	
 	}
 }

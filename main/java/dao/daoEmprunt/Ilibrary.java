@@ -7,7 +7,7 @@ import metier.metierEmprunt.*;
 public interface Ilibrary {
 	public Emprunt ajouter(Emprunt E);
 	public List<Emprunt> chercher(String mc);
-	public Emprunt getProduct(int id);
+	public List<Emprunt> Afficher();
 	public Emprunt modifie(Emprunt E);
-	public void suprimer(int id);
+	public void suprimer(int mem_id);
 }
