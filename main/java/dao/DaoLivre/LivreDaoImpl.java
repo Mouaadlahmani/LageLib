@@ -1,4 +1,3 @@
-
 package dao.DaoLivre;
 
 import java.sql.Connection;
@@ -188,5 +187,3 @@ public class LivreDaoImpl implements IlivreDio {
 	  return produits; }
 	 
 */
-}
-	  
