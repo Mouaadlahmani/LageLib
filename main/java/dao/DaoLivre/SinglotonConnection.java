@@ -9,7 +9,7 @@ public class SinglotonConnection {
 	private static Connection connection;
 	
 	static {
-		String url="jdbc:mysql://localhost:3306/LES_PRODUITS";
+		String url="jdbc:mysql://localhost:3306/bibliotheque";
 		String username="root";
 		String password="root";
 		
@@ -33,4 +33,3 @@ public class SinglotonConnection {
 	
 		return connection;
 	}
-}
