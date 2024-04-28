@@ -19,11 +19,13 @@
   <div class="panel panel-primary ">
     <div class="panel-heading d-flex justify-content-between align-items-center">
       <span>les livres</span>
-     <%--  <form class="navbar-form navbar-left " action="chercher.pr" method="get">
+      <form class="navbar-form navbar-center " action="chercher.pr" method="get">
             <input type="text" class="form-control" placeholder="Search" name="nom_produit" value="${model.motCle}">
-             <button type="submit" class="btn btn-default">recherche</button>
-      </form> --%>
+            <button type="submit" class="btn btn-default">recherche</button>
+      </form>
+      <a class="navbar-brand" href="./Html/NewLivre.html" id="newProduit"><img id="icon_Ajouter" src="images/plus.png"></a>
     </div>
+        
     <div class="panel-body">
         <table class="table table-bordered">
             <thead>
@@ -38,6 +40,7 @@
               </tr>
             </thead>
             <tbody>
+            
                <c:forEach items="${Touslivres.livres}" var="liv">
 		             <tr>
 		                 <td>${liv.id}</td>
@@ -45,8 +48,8 @@
 		                 <td>${liv.auteur}</td>
 		                 <td>${liv.editeur}</td>
 		                 <td>${liv.année_de_publication}</td>
-		                 <td><a href="Supprimer.pr?id=${liv.id}"><img class="action_icon" src="images/supprimer.png"></a></td>
-		                 <td><a href="Edit.pr?id=${liv.id}"><img class="action_icon" src="images/editer.png"></a></td>	
+		                 <td><a href="Supprimer.liv?id=${liv.id}"><img class="action_icon" src="images/supprimer.png"></a></td>
+		                 <td><a href="Edit.liv?id=${liv.id}"><img class="action_icon" src="images/editer.png"></a></td>	
 		               </tr>
                </c:forEach>
 
@@ -70,7 +73,7 @@
 </div>
 
 
-
+ 
 <!-- <script src="js/main.js"></script> -->
 </body>
 
